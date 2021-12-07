@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Home from "./views/home/index";
+import Home from "../src/views/home/index";
 import {Route, Routes} from "react-router-dom";
 import Web3 from "web3";
 
