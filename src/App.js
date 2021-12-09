@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import Home from "../src/views/home/index";
 import {Route, Routes} from "react-router-dom";
 import Web3 from "web3";
+import MainLayout from "./layouts/main";
 
 function App() {
   useEffect(() => {
@@ -17,7 +17,7 @@ function App() {
   
   return (
         <Routes>
-          <Route path="/" exact component={Home} />
+          <Route path="/home" exact component={MainLayout} />
         </Routes>
 
   );

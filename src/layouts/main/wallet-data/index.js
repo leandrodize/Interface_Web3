@@ -2,16 +2,13 @@ import {
     Flex,
     Button,
     Tag,
-    TagLabel,
     Badge,
     TagCloseButton,
   } from "@chakra-ui/react";
   import { AddIcon } from "@chakra-ui/icons";
-  import { Link } from "react-router-dom";
   import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
   import { connector } from "../../../config/web3";
   import { useCallback, useEffect, useState } from "react";
-  import useTruncatedAddress from "../../../hooks/useTruncatedAddress";
   
   const WalletData = () => {
     const [balance, setBalance] = useState(0);
@@ -24,7 +21,7 @@ import {
       activate(connector);
       localStorage.setItem("previouslyConnected", "true");
     }, [activate]);
-  
+   
     const disconnect = () => {
       deactivate();
       localStorage.removeItem("previouslyConnected");
@@ -43,15 +40,11 @@ import {
       if (localStorage.getItem("previouslyConnected") === "true") connect();
     }, [connect]);
   
-    const truncatedAddress = useTruncatedAddress(account);
   
     return (
       <Flex alignItems={"center"}>
         {active ? (
           <Tag colorScheme="blue" borderRadius="full">
-            <TagLabel>
-              <Link to="/trans">{truncatedAddress}</Link>
-            </TagLabel>
             <Badge
               d={{
                 base: "none",
@@ -63,7 +56,7 @@ import {
             >
               ~{balance} Ξ
             </Badge>
-            <TagCloseButton onClick={disconnect} />
+            <TagCloseButton onClick={disconnect} /> 
           </Tag>
         ) : (
           <Button
@@ -71,7 +64,8 @@ import {
             colorScheme={"blue"}
             size={"sm"}
             leftIcon={<AddIcon />}
-            onClick={connect}
+            onClick={connect} 
+            //boton de coneccion
             disabled={isUnsupportedChain}
           >
             {isUnsupportedChain ? "Red no soportada" : "Conectar wallet"}
