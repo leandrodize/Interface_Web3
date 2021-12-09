@@ -21,10 +21,10 @@ import {
     const getTransHumansData = useCallback(async () => {
       if (TransHumans) {
         const totalSupply = await TransHumans.methods.totalSupply().call();
-        const dnaPreview = await TransHumans.methods
-          .deterministicPseudoRandomDNA(totalSupply, account)
+        const adnPreview = await TransHumans.methods
+          .deterministicPseudoRandomADN(totalSupply, account)
           .call();
-        const image = await TransHumans.methods.imageByDNA(dnaPreview).call();
+        const image = await TransHumans.methods.imageByADN(adnPreview).call();
         setImageSrc(image);
       }
     }, [TransHumans, account]);
@@ -128,7 +128,7 @@ import {
             >
               Obtén tu TransHuman
             </Button>
-            <Link to="/trans">
+            <Link to="/gallery">
               <Button rounded={"full"} size={"lg"} fontWeight={"normal"} px={6}>
                 Galería
               </Button>

@@ -15,3 +15,4 @@ const useTransHumans = () => {
 };
 
 export default useTransHumans;
+
