@@ -1,6 +1,6 @@
 const TransHumansArtifacts = {
   address: {
-    4: "",
+    4: "0x45f2fb87f4a18d3da059afbe3eb9f54bd2c3d916",
   },
   abi: [
     {
