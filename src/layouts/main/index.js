@@ -6,7 +6,6 @@ import {
     useDisclosure,
     useColorModeValue,
     Stack,
-    Image,
     Heading,
   } from "@chakra-ui/react";
   import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
@@ -16,11 +15,11 @@ import {
   
   const Links = [
     {
-      name: "Home",
+      name: "home",
       to: "/",
     },
     {
-      name: "Gallery",
+      name: "gallery",
       to: "/gallery",
     },
   ];
@@ -58,9 +57,8 @@ import {
             />
             <HStack spacing={8} alignItems={"center"}>
               <Flex alignItems="center">
-                <Image src="../assets/LogoTH.svg" width="80px" />
                 <Heading size="md" color="blue" mt={0.2} ml={1}>
-                  Trans
+                  Trans Humans
                 </Heading>
               </Flex>
               <HStack

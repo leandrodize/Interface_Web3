@@ -9,7 +9,7 @@ const useTransHumans = () => {
 
   const TransHumans = useMemo(() => {
     if (active) return new library.eth.Contract(abi, address[chainId]);
-  }, [active, chainId, TransHumans?.eth?.Contract]);
+  }, [active, chainId, library?.eth?.Contract]);
 
   return TransHumans ;
 };

@@ -6,6 +6,7 @@ import {
     Button,
     Image,
     Badge,
+    useToast,
   } from "@chakra-ui/react";
   import { Link } from "react-router-dom";
   import { useWeb3React } from "@web3-react/core";
@@ -17,6 +18,7 @@ import {
     const [imageSrc, setImageSrc] = useState("");
     const { active, account } = useWeb3React();
     const TransHumans = useTransHumans();
+    const toast = useToast();
   
     const getTransHumansData = useCallback(async () => {
       if (TransHumans) {

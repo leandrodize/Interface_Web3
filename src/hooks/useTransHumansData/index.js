@@ -102,6 +102,32 @@ const useTransHumansData = () => {
     update,
   };
 };
+//singular
+const useTransHumanData = (tokenId = null) => {
+  const [trans, setTrans] = useState({});
+  const [loading, setLoading] = useState(true);
+  const TransHuman = useTransHumans();
 
+  const update = useCallback(async () => {
+    if (TransHuman && tokenId != null) {
+      setLoading(true);
 
-export { useTransHumansData };
+      const toSet = await getTransHumansData({ tokenId, TransHuman });
+      setTrans(toSet);
+
+      setLoading(false);
+    }
+  }, [TransHuman, tokenId]);
+
+  useEffect(() => {
+    update();
+  }, [update]);
+
+  return {
+    loading,
+    trans,
+    update,
+  };
+};
+
+export { useTransHumansData, useTransHumanData };

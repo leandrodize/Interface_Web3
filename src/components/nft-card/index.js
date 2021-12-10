@@ -6,7 +6,7 @@ import {
     Image,
   } from "@chakra-ui/react";
   
-  const nftCard = ({ image, name, ...props }) => {
+  const NFTcard = ({ image, name, ...props }) => {
     return (
       <Box
         role={"group"}
@@ -59,4 +59,4 @@ import {
     );
   };
   
-  export default nftCard;
+  export default NFTcard;
