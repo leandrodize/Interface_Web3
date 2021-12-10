@@ -15,18 +15,19 @@ import {
   import { useWeb3React } from "@web3-react/core";
   import RequestAccess from "../../components/request-acces";
   import NFTcard from "../../components/nft-card";
-  import { useTransHumansData } from "../../hooks/useTransHumansData";
+  import {useTransHumanData} from "../../hooks/useTransHumansData"
   import { useParams } from "react-router-dom";
   import Loading from "../../components/loading";
   import { useState } from "react";
+  import useTransHumans from "../../hooks/useTransHumans";
   
   const NFT = () => {
     const { active, account, library } = useWeb3React();
     const { tokenId } = useParams();
-    const { loading, trans, update } = useTransHumansData(tokenId);
+    const { loading, trans, update } = useTransHumanData(tokenId);
     const toast = useToast();
     const [transfering, setTransfering] = useState(false);
-    const TransHumans = useTransHumansData();
+    const TransHumans = useTransHumans();
 
     const transfer = () => {
       setTransfering(true);

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import useTransHumans from "../useTransHumans";
+import useWeb3React from "@web3-react/core";
 
 const getTransHumansData = async ({ TransHumans, tokenId }) => {
   const [
@@ -67,8 +68,9 @@ const getTransHumansData = async ({ TransHumans, tokenId }) => {
 };
 
 // Plural
-const useTransHumansData = () => {
+const useTransHumansData = ({owner = null} = {}) => {
   const [trans, setTrans] = useState([]);
+  const {library} = useWeb3React();
   const [loading, setLoading] = useState(true);
   const TransHumans = useTransHumans();
 
@@ -78,8 +80,17 @@ const useTransHumansData = () => {
 
       let tokenIds;
 
-      const totalSupply = await TransHumans.methods.totalSupply().call();
-      tokenIds = new Array(Number(totalSupply)).fill().map((_, index) => index);
+      if(!library.utils.isAddress(owner)){
+        const totalSupply = await TransHumans.methods.totalSupply().call();
+        tokenIds = new Array(Number(totalSupply)).fill().map((_, index) => index);
+      }else{
+        const balanceOf = await TransHumans.methods.balanceOf(owner).call();
+        const tokenIdsOfOwner = new Array(Number(balanceOf))
+          .fill()
+          .map((_, index) => TransHumans.methods.tokenOfOwnerByIndex(owner, index).call());
+
+        tokenIds = await Promise.all(tokenIdsOfOwner);
+      }
 
       const transPromise = tokenIds.map((tokenId) =>
         getTransHumansData({ tokenId, TransHumans })
@@ -90,7 +101,7 @@ const useTransHumansData = () => {
       setTrans(trans);
       setLoading(false);
     }
-  }, [TransHumans]);
+  }, [TransHumans, owner, library?.utils]);
 
   useEffect(() => {
     update();
