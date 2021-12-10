@@ -9,6 +9,7 @@ import {
   import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
   import { connector } from "../../../config/web3";
   import { useCallback, useEffect, useState } from "react";
+  import useTruncatedAddress from "../../../hooks/useTruncatedAddress";
   
   const WalletData = () => {
     const [balance, setBalance] = useState(0);
@@ -40,11 +41,14 @@ import {
       if (localStorage.getItem("previouslyConnected") === "true") connect();
     }, [connect]);
   
-  
+    const truncatedAddress = useTruncatedAddress(account);
     return (
       <Flex alignItems={"center"}>
         {active ? (
           <Tag colorScheme="blue" borderRadius="full">
+            <TagLabel>
+              <Link to={`/gallery?address=${account}`}>{truncatedAddress}</Link>
+            </TagLabel>
             <Badge
               d={{
                 base: "none",
