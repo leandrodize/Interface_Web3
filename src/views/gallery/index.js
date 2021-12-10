@@ -16,7 +16,7 @@ import RequestAccess from "../../components/request-acces";
 import Loading from "../../components/loading";
 import { useTransHumansData } from "../../hooks/useTransHumansData";
 import { useState } from "react";
-import {useHistory, useLocation} from "react-router-dom";
+import {useNavigate, useLocation} from "react-router-dom";
 
 const Gallery = () => {
   const {search} = useLocation();
@@ -25,7 +25,7 @@ const Gallery = () => {
   const [validAddress, setValidAddress] = useState(true);
   const { active, library } = useWeb3React();
   const { trans, loading } = useTransHumansData({owner: submitted && validAddress ? address : null});
-  const {push} = useHistory();
+  const {navigate} = useNavigate();
 
   const handleAddressChange = ({target: {value}}) =>{
     setAddress(value);
@@ -40,9 +40,9 @@ const Gallery = () => {
       const isValid = library.utils.isAddress(address);
       setValidAddress(isValid);
       setSubmitted(true);
-      if(isValid) push(`/gallery?address=${address}`);
+      if(isValid) navigate(`/gallery?address=${address}`);
     }else{
-      push("/gallery")
+      navigate("/gallery")
     }
   }
 

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import useTransHumans from "../useTransHumans";
-import useWeb3React from "@web3-react/core";
+import {useWeb3React} from "@web3-react/core";
 
 const getTransHumansData = async ({ TransHumans, tokenId }) => {
   const [

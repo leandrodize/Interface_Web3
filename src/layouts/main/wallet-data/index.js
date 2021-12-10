@@ -4,6 +4,8 @@ import {
     Tag,
     Badge,
     TagCloseButton,
+    TagLabel,
+    Link,
   } from "@chakra-ui/react";
   import { AddIcon } from "@chakra-ui/icons";
   import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
